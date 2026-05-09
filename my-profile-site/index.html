@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>홍 폴 (Paul Hong) — 풀스택 개발자</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#6366f1',
+            'primary-light': '#818cf8',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+
+  <!-- ===== NAVBAR ===== -->
+  <header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+    <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#hero" class="text-lg font-bold gradient-text">Paul Hong</a>
+
+      <!-- Desktop nav -->
+      <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+        <li><a href="#about"    class="nav-link hover:text-slate-100 transition-colors">소개</a></li>
+        <li><a href="#skills"   class="nav-link hover:text-slate-100 transition-colors">기술</a></li>
+        <li><a href="#projects" class="nav-link hover:text-slate-100 transition-colors">프로젝트</a></li>
+        <li><a href="#contact"  class="nav-link hover:text-slate-100 transition-colors">연락처</a></li>
+      </ul>
+
+      <!-- Mobile menu button -->
+      <button id="menu-btn" class="md:hidden p-2 rounded-lg hover:bg-slate-800 transition-colors" aria-label="메뉴">
+        <!-- icon-open (hamburger) -->
+        <svg id="icon-open" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <!-- icon-close (X) -->
+        <svg id="icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Mobile dropdown -->
+    <div id="mobile-menu" class="md:hidden hidden bg-slate-800/95 backdrop-blur-sm border-t border-slate-700">
+      <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium text-slate-300">
+        <li><a href="#about"    class="block hover:text-primary transition-colors">소개</a></li>
+        <li><a href="#skills"   class="block hover:text-primary transition-colors">기술</a></li>
+        <li><a href="#projects" class="block hover:text-primary transition-colors">프로젝트</a></li>
+        <li><a href="#contact"  class="block hover:text-primary transition-colors">연락처</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section id="hero" class="hero-bg min-h-screen flex flex-col items-center justify-center text-center px-6">
+      <div class="max-w-3xl">
+        <p class="text-primary font-mono text-sm mb-4 tracking-widest uppercase fade-in">안녕하세요, 저는</p>
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-4 leading-tight fade-in">
+          홍 폴<br/>
+          <span class="text-slate-400 text-4xl md:text-5xl font-bold">Paul Hong</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-slate-400 mb-2 fade-in">
+          <span id="typing-role" class="text-primary-light font-semibold typing-cursor"></span>
+        </p>
+        <p class="text-slate-500 text-sm md:text-base mt-6 mb-10 max-w-xl mx-auto fade-in">
+          웹 서비스와 보안을 함께 고민하는 풀스택 개발자입니다.<br/>
+          사용자 경험과 시스템 안전성 모두를 중시합니다.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+          <a href="#projects"
+             class="px-7 py-3 rounded-lg bg-primary hover:bg-primary-light text-white font-semibold transition-colors shadow-lg shadow-indigo-900/40">
+            프로젝트 보기
+          </a>
+          <a href="#contact"
+             class="px-7 py-3 rounded-lg border border-slate-600 hover:border-primary text-slate-300 hover:text-primary font-semibold transition-colors">
+            연락하기
+          </a>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-10 flex flex-col items-center gap-1 text-slate-600 text-xs animate-bounce">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+        </svg>
+        scroll
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="py-24 px-6">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold mb-12 text-center fade-in">
+          <span class="gradient-text">소개</span>
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <!-- Avatar -->
+          <div class="flex justify-center fade-in">
+            <div class="w-52 h-52 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center text-7xl shadow-xl">
+              👨‍💻
+            </div>
+          </div>
+
+          <!-- Bio -->
+          <div class="fade-in space-y-5">
+            <h3 class="text-2xl font-semibold text-slate-100">안녕하세요!</h3>
+            <p class="text-slate-400 leading-relaxed">
+              저는 <span class="text-primary-light font-medium">홍 폴 (Paul Hong)</span>입니다.
+              프론트엔드부터 백엔드, 보안까지 전반적인 웹 개발 경험을 갖춘 풀스택 개발자입니다.
+            </p>
+            <p class="text-slate-400 leading-relaxed">
+              사용자가 편리하게 쓸 수 있는 서비스를 만드는 것을 즐기며,
+              동시에 시스템의 보안과 안정성을 함께 고민합니다.
+              클린 코드와 테스트 주도 개발(TDD)을 지향합니다.
+            </p>
+            <p class="text-slate-400 leading-relaxed">
+              현재 <span class="text-slate-200 font-medium">Secuware</span>에서 보안 솔루션 개발에 기여하고 있으며,
+              사이드 프로젝트를 통해 새로운 기술을 꾸준히 탐구합니다.
+            </p>
+
+            <div class="flex flex-wrap gap-3 pt-2">
+              <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-xs">서울, 한국</span>
+              <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-xs">TDD 지향</span>
+              <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-xs">보안 관심</span>
+              <span class="px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300 text-xs">오픈소스 기여</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section id="skills" class="py-24 px-6 bg-slate-800/30">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold mb-12 text-center fade-in">
+          <span class="gradient-text">기술 스택</span>
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-6">
+
+          <!-- Frontend -->
+          <div class="skill-card bg-slate-800 border border-slate-700 rounded-xl p-6 fade-in">
+            <div class="text-2xl mb-3">🎨</div>
+            <h3 class="text-lg font-semibold text-slate-100 mb-4">Frontend</h3>
+            <ul class="space-y-2">
+              <li class="skill-item">HTML5 / CSS3</li>
+              <li class="skill-item">JavaScript (ES2022+)</li>
+              <li class="skill-item">TypeScript</li>
+              <li class="skill-item">React</li>
+              <li class="skill-item">Vue.js</li>
+              <li class="skill-item">Tailwind CSS</li>
+            </ul>
+          </div>
+
+          <!-- Backend -->
+          <div class="skill-card bg-slate-800 border border-slate-700 rounded-xl p-6 fade-in">
+            <div class="text-2xl mb-3">⚙️</div>
+            <h3 class="text-lg font-semibold text-slate-100 mb-4">Backend</h3>
+            <ul class="space-y-2">
+              <li class="skill-item">Node.js / Express</li>
+              <li class="skill-item">Python / FastAPI</li>
+              <li class="skill-item">Java / Spring Boot</li>
+              <li class="skill-item">PostgreSQL / MySQL</li>
+              <li class="skill-item">Redis</li>
+              <li class="skill-item">REST API / GraphQL</li>
+            </ul>
+          </div>
+
+          <!-- DevOps & Tools -->
+          <div class="skill-card bg-slate-800 border border-slate-700 rounded-xl p-6 fade-in">
+            <div class="text-2xl mb-3">🛠️</div>
+            <h3 class="text-lg font-semibold text-slate-100 mb-4">DevOps &amp; Tools</h3>
+            <ul class="space-y-2">
+              <li class="skill-item">Docker / Docker Compose</li>
+              <li class="skill-item">Git / GitHub</li>
+              <li class="skill-item">Linux / Bash</li>
+              <li class="skill-item">CI/CD (GitHub Actions)</li>
+              <li class="skill-item">AWS (EC2, S3)</li>
+              <li class="skill-item">Nginx</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects" class="py-24 px-6">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold mb-12 text-center fade-in">
+          <span class="gradient-text">프로젝트</span>
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-6">
+
+          <!-- Project 1 -->
+          <div class="project-card bg-slate-800 border border-slate-700 rounded-xl overflow-hidden fade-in flex flex-col">
+            <div class="h-2 bg-gradient-to-r from-indigo-500 to-purple-500"></div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="text-lg font-semibold text-slate-100 mb-2">버킷 리스트 앱</h3>
+              <p class="text-slate-400 text-sm leading-relaxed flex-1">
+                인생 목표를 시각적으로 관리하는 웹 앱. 로컬스토리지 기반 CRUD, 카테고리 필터, 진행률 시각화를 제공합니다.
+              </p>
+              <div class="flex flex-wrap gap-2 my-4">
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">CSS</span>
+                <span class="tech-tag">JavaScript</span>
+              </div>
+              <div class="flex gap-3 text-sm">
+                <a href="#" class="flex items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577v-2.234C5.67 21.16 4.97 19.04 4.97 19.04c-.547-1.39-1.334-1.76-1.334-1.76-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.807 1.305 3.492.998.108-.775.418-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.235-3.22-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23A11.5 11.5 0 0112 6.482c1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.243 2.874.12 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.807 5.625-5.48 5.92.43.372.823 1.102.823 2.222v3.293c0 .322.218.694.825.577C20.565 21.796 24 17.298 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+                <a href="#" class="flex items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                  Demo
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card bg-slate-800 border border-slate-700 rounded-xl overflow-hidden fade-in flex flex-col">
+            <div class="h-2 bg-gradient-to-r from-emerald-500 to-teal-500"></div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="text-lg font-semibold text-slate-100 mb-2">보안 대시보드</h3>
+              <p class="text-slate-400 text-sm leading-relaxed flex-1">
+                시스템 취약점 스캔 결과를 시각화하는 대시보드. 위험도별 분류, 실시간 알림, 리포트 자동 생성 기능 포함.
+              </p>
+              <div class="flex flex-wrap gap-2 my-4">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">PostgreSQL</span>
+              </div>
+              <div class="flex gap-3 text-sm">
+                <a href="#" class="flex items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577v-2.234C5.67 21.16 4.97 19.04 4.97 19.04c-.547-1.39-1.334-1.76-1.334-1.76-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.807 1.305 3.492.998.108-.775.418-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.235-3.22-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23A11.5 11.5 0 0112 6.482c1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.243 2.874.12 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.807 5.625-5.48 5.92.43.372.823 1.102.823 2.222v3.293c0 .322.218.694.825.577C20.565 21.796 24 17.298 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+                <a href="#" class="flex items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                  Demo
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card bg-slate-800 border border-slate-700 rounded-xl overflow-hidden fade-in flex flex-col">
+            <div class="h-2 bg-gradient-to-r from-orange-500 to-rose-500"></div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="text-lg font-semibold text-slate-100 mb-2">API Gateway</h3>
+              <p class="text-slate-400 text-sm leading-relaxed flex-1">
+                마이크로서비스 환경을 위한 경량 API 게이트웨이. 인증, 레이트 리미팅, 로깅, 요청 라우팅을 지원합니다.
+              </p>
+              <div class="flex flex-wrap gap-2 my-4">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">Docker</span>
+                <span class="tech-tag">Redis</span>
+              </div>
+              <div class="flex gap-3 text-sm">
+                <a href="#" class="flex items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577v-2.234C5.67 21.16 4.97 19.04 4.97 19.04c-.547-1.39-1.334-1.76-1.334-1.76-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.807 1.305 3.492.998.108-.775.418-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.235-3.22-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23A11.5 11.5 0 0112 6.482c1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.243 2.874.12 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.807 5.625-5.48 5.92.43.372.823 1.102.823 2.222v3.293c0 .322.218.694.825.577C20.565 21.796 24 17.298 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+                <a href="#" class="flex items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                  Demo
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="text-center text-slate-500 text-sm mt-8 fade-in">
+          더 많은 프로젝트는
+          <a href="#" class="text-primary hover:underline">GitHub</a>에서 확인하세요.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="py-24 px-6 bg-slate-800/30">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-4 fade-in">
+          <span class="gradient-text">연락처</span>
+        </h2>
+        <p class="text-slate-400 mb-12 fade-in">
+          프로젝트 협업, 채용 문의, 혹은 그냥 인사라도 환영합니다.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12 fade-in">
+          <!-- Email -->
+          <a href="mailto:paul@secuware.co.kr"
+             class="contact-icon flex items-center gap-3 px-6 py-4 bg-slate-800 border border-slate-700 hover:border-primary rounded-xl text-slate-300 hover:text-slate-100 transition-colors">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <span class="text-sm font-medium">paul@secuware.co.kr</span>
+          </a>
+
+          <!-- GitHub -->
+          <a href="https://github.com" target="_blank" rel="noopener"
+             class="contact-icon flex items-center gap-3 px-6 py-4 bg-slate-800 border border-slate-700 hover:border-primary rounded-xl text-slate-300 hover:text-slate-100 transition-colors">
+            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577v-2.234C5.67 21.16 4.97 19.04 4.97 19.04c-.547-1.39-1.334-1.76-1.334-1.76-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.807 1.305 3.492.998.108-.775.418-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.235-3.22-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23A11.5 11.5 0 0112 6.482c1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.243 2.874.12 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.807 5.625-5.48 5.92.43.372.823 1.102.823 2.222v3.293c0 .322.218.694.825.577C20.565 21.796 24 17.298 24 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            <span class="text-sm font-medium">GitHub</span>
+          </a>
+
+          <!-- LinkedIn -->
+          <a href="https://linkedin.com" target="_blank" rel="noopener"
+             class="contact-icon flex items-center gap-3 px-6 py-4 bg-slate-800 border border-slate-700 hover:border-primary rounded-xl text-slate-300 hover:text-slate-100 transition-colors">
+            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            <span class="text-sm font-medium">LinkedIn</span>
+          </a>
+        </div>
+
+        <div class="fade-in">
+          <a href="mailto:paul@secuware.co.kr"
+             class="inline-block px-8 py-3 rounded-lg bg-primary hover:bg-primary-light text-white font-semibold transition-colors shadow-lg shadow-indigo-900/40">
+            이메일 보내기
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="py-8 px-6 border-t border-slate-800 text-center text-slate-500 text-sm">
+    <p>© 2026 홍 폴 (Paul Hong). Built with HTML, Tailwind CSS &amp; JavaScript.</p>
+  </footer>
+
+  <!-- Tailwind custom classes used via JS -->
+  <style>
+    .skill-item {
+      @apply text-sm text-slate-400 flex items-center gap-2;
+    }
+    .skill-item::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #6366f1;
+      flex-shrink: 0;
+    }
+    .tech-tag {
+      @apply px-2 py-0.5 rounded text-xs bg-slate-700 text-slate-300;
+    }
+  </style>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

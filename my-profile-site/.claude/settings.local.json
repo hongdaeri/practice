@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bash -c 'input=$\\(cat\\); model=$\\(echo \"$input\" | jq -r '\\\\''.model.display_name // \"Unknown\"'\\\\''\\); used=$\\(echo \"$input\" | jq -r '\\\\''.context_window.used_percentage // empty'\\\\''\\); cost=$\\(echo \"$input\" | jq -r '\\\\''.session_cost_usd // empty'\\\\''\\); out=\"$model\"; [ -n \"$used\" ] && out=\"$out | CTX: $\\(printf '\\\\''%.0f'\\\\'' \"$used\"\\)%\"; [ -n \"$cost\" ] && out=\"$out | $\\(printf '\\\\''$%.4f'\\\\'' \"$cost\"\\)\"; echo \"$out\"')"
+    ]
+  }
+}

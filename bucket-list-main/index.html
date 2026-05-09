@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나의 버킷 리스트</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="min-h-screen py-10">
+    <div class="container mx-auto px-4 max-w-3xl">
+
+        <!-- 헤더 -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-white mb-2 drop-shadow-lg tracking-tight">🎯 나의 버킷 리스트</h1>
+            <p class="text-white opacity-85 drop-shadow text-sm">인생에서 꼭 이루고 싶은 것들을 기록하세요</p>
+        </header>
+
+        <!-- 통계 -->
+        <div class="glass-card p-5 mb-5">
+            <div class="flex gap-3 text-center">
+                <div class="stat-card stat-card-blue">
+                    <p class="text-2xl font-bold text-blue-600" id="totalCount">0</p>
+                    <p class="text-gray-500 text-xs mt-1">전체</p>
+                </div>
+                <div class="stat-card stat-card-green">
+                    <p class="text-2xl font-bold text-green-600" id="completedCount">0</p>
+                    <p class="text-gray-500 text-xs mt-1">완료</p>
+                </div>
+                <div class="stat-card stat-card-orange">
+                    <p class="text-2xl font-bold text-orange-500" id="progressCount">0</p>
+                    <p class="text-gray-500 text-xs mt-1">진행중</p>
+                </div>
+                <div class="stat-card stat-card-purple">
+                    <p class="text-2xl font-bold text-purple-600" id="completionRate">0%</p>
+                    <p class="text-gray-500 text-xs mt-1">달성률</p>
+                </div>
+                <div class="stat-card stat-card-red">
+                    <p class="text-2xl font-bold text-red-600" id="overdueCount">0</p>
+                    <p class="text-gray-500 text-xs mt-1">기한 초과</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 입력 폼 -->
+        <div class="glass-card p-5 mb-5">
+            <form id="bucketForm">
+                <div class="flex gap-3">
+                    <input
+                        type="text"
+                        id="bucketInput"
+                        placeholder="새로운 버킷 리스트를 입력하세요..."
+                        class="bucket-input-field flex-1"
+                        required
+                    >
+                    <button type="submit" class="btn-primary">
+                        + 추가
+                    </button>
+                </div>
+                <div class="flex justify-start">
+                    <button type="button" id="toggleOptions" class="btn-toggle-options">
+                        옵션 추가 ▾
+                    </button>
+                </div>
+                <div id="optionalFields" class="hidden mt-2 grid grid-cols-3 gap-2">
+                    <select id="priorityInput" class="optional-select">
+                        <option value="medium" selected>중간 우선순위</option>
+                        <option value="high">높은 우선순위</option>
+                        <option value="low">낮은 우선순위</option>
+                    </select>
+                    <input
+                        type="date"
+                        id="dueDateInput"
+                        class="bucket-input-field"
+                        placeholder="마감일"
+                    >
+                    <input
+                        type="text"
+                        id="categoryInput"
+                        class="bucket-input-field"
+                        placeholder="카테고리 (예: 여행)"
+                        maxlength="20"
+                    >
+                </div>
+            </form>
+        </div>
+
+        <!-- 필터 -->
+        <div class="glass-card p-4 mb-5">
+            <div class="flex gap-2 justify-center">
+                <button class="filter-btn active" data-filter="all">전체</button>
+                <button class="filter-btn" data-filter="active">진행중</button>
+                <button class="filter-btn" data-filter="completed">완료</button>
+            </div>
+            <div id="categoryFilters" class="hidden mt-2 flex gap-2 flex-wrap justify-center">
+                <!-- 동적으로 렌더링됨 -->
+            </div>
+        </div>
+
+        <!-- 버킷 리스트 목록 -->
+        <div id="bucketListContainer" class="space-y-3">
+            <!-- 동적으로 생성됨 -->
+        </div>
+
+        <!-- 빈 상태 메시지 -->
+        <div id="emptyState" class="text-center py-16 hidden">
+            <p class="text-5xl mb-4">✨</p>
+            <p class="text-white text-lg font-medium drop-shadow">아직 버킷 리스트가 없습니다.</p>
+            <p class="text-white opacity-75 text-sm mt-1 drop-shadow">위에서 새로운 목표를 추가해보세요!</p>
+        </div>
+    </div>
+
+    <!-- 수정 모달 -->
+    <div id="editModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="glass-card p-6 max-w-md w-full mx-4">
+            <h3 class="text-xl font-bold mb-4 text-gray-800">✏️ 버킷 리스트 수정</h3>
+            <form id="editForm">
+                <input
+                    type="text"
+                    id="editInput"
+                    class="bucket-input-field w-full mb-3"
+                    required
+                >
+                <div class="grid grid-cols-3 gap-2 mb-4">
+                    <select id="editPriorityInput" class="optional-select">
+                        <option value="medium">중간 우선순위</option>
+                        <option value="high">높은 우선순위</option>
+                        <option value="low">낮은 우선순위</option>
+                    </select>
+                    <input
+                        type="date"
+                        id="editDueDateInput"
+                        class="bucket-input-field"
+                    >
+                    <input
+                        type="text"
+                        id="editCategoryInput"
+                        class="bucket-input-field"
+                        placeholder="카테고리"
+                        maxlength="20"
+                    >
+                </div>
+                <div class="flex gap-2 justify-end">
+                    <button
+                        type="button"
+                        id="cancelEdit"
+                        class="px-4 py-2 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-colors font-medium text-sm"
+                    >
+                        취소
+                    </button>
+                    <button type="submit" class="btn-primary text-sm" style="padding: 0.5rem 1.25rem;">
+                        저장
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
